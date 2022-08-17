@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    analyzedInstructions: {
+    instructions: {
       type: DataTypes.STRING,
       allowNull: false,
     },
