@@ -47,6 +47,7 @@ router.get('/recipes', async (req,res)=>{
 })
 
 //junto los de api con los de db
+
 const getAllrecetas = async ()=>{
     const apiInfo = await getApiInfo()
     const dbInfo = await getDbInfo()
@@ -108,5 +109,23 @@ router.get('/recipes/:id', async(req,res)=>{
 })
 
 //get x dieta
+
+router.get('/diets', async (req,res)=>{
+    const dietApi= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=8b3b81aa6ed047b08e353cb828d81133&number=100&addRecipeInformation=true`)
+    try{
+       const diet= dietApi.data.results.map(e=>e.diets);
+       console.log("las diet de api aca: ", diet)
+       const diet2= diet.toString().split(",")//convierto el arreglo en string-- lo separo con una "," a cada dieta
+       console.log("las diet 2 de api aca: ", diet2)
+       diet2.forEach(e=>{
+        Diet.findOrCreate({// creo la dieta en la bd, si existe la omite
+            where: {name: e}
+        })
+       });
+       const allDiet = await Diet.findAll()
+       res.send(allDiet)
+    }
+    catch (error){console.log("el error de las dietas es: ", error)}
+})
 
 module.exports = router;
