@@ -13,13 +13,14 @@ const router = Router();
 
 //traigo las recetas
 const getApiInfo = async ()=>{
-    const firstReq = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=8b3b81aa6ed047b08e353cb828d81133&number=100&addRecipeInformation=true`);
+    const firstReq = await axios.get(
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=a9c77b840a354e019cc2fe0d3602f556&number=100&addRecipeInformation=true`);
     const info = firstReq.data.results.map(e=>{
         return{
             id: e.id,
             title: e.title,
             //summary: e.summary,
-            //healthScore: e.healthScore,
+            healthScore: e.healthScore,
             //analyzedInstructions: e.analyzedInstructions.map(f=>f.steps.map(e=>e.step)),
             image: e.image,
             diet: e.diets
@@ -83,7 +84,7 @@ const getId =async (id)=>{
                 creadoEnDb: true
             }
         }
-        const recetaA = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=8b3b81aa6ed047b08e353cb828d81133`)
+        const recetaA = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=a9c77b840a354e019cc2fe0d3602f556`)
         return{
             id: recetaA.data.id,
             title: recetaA.data.title,
@@ -111,7 +112,7 @@ router.get('/recipes/:id', async(req,res)=>{
 //get x dieta
 
 router.get('/diets', async (req,res)=>{
-    const dietApi= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=8b3b81aa6ed047b08e353cb828d81133&number=100&addRecipeInformation=true`)
+    const dietApi= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=a9c77b840a354e019cc2fe0d3602f556&number=100&addRecipeInformation=true`)
     try{
        const diet= dietApi.data.results.map(e=>e.diets);
        console.log("las diet de api aca: ", diet)
@@ -126,6 +127,35 @@ router.get('/diets', async (req,res)=>{
        res.send(allDiet)
     }
     catch (error){console.log("el error de las dietas es: ", error)}
+})
+
+// ruta post
+
+router.post('/recipes', async (req,res)=>{
+    let {
+        title,
+        summary,
+        healthScore,
+        instructions,
+        image,
+        diet
+    }= req.body;
+    try{
+        let recipeCreated = await Recipe.create({
+        title,
+        summary,
+        healthScore,
+        instructions,
+        image
+        })
+        let dietDb = await Diet.findAll({ where: {name: diet}})
+        recipeCreated.addDiet(dietDb)
+
+        return res.send('Receta creada exitosamente')
+    }
+    catch (error){
+        console.log("el error del post fue: ", error)
+    }
 })
 
 module.exports = router;
