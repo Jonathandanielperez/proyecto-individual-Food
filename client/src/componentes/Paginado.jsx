@@ -1,4 +1,5 @@
 import React from 'react';
+import '../estilos/paginado.css';
 
 export default function Paginado ({recipePerPage, allRecipes, paginado, currentPage, setCurrentPage}){
     const pageNumber= []
@@ -8,8 +9,9 @@ export default function Paginado ({recipePerPage, allRecipes, paginado, currentP
     }
     return(
         <nav>
-            <ul>
+            <ul className='ul'>
                 <button
+                className='but'
                 disabled= {currentPage === 1}
                 onClick={()=>
                 setCurrentPage(currentPage === 1?
@@ -21,6 +23,7 @@ export default function Paginado ({recipePerPage, allRecipes, paginado, currentP
                 <li>
                     {pageNumber && pageNumber.map((number)=>(
                         <button
+                        className='but'
                         key={number}
                         onClick={()=>paginado(number)}
                         >
@@ -29,6 +32,7 @@ export default function Paginado ({recipePerPage, allRecipes, paginado, currentP
                     ))}
                 </li>
                 <button
+                className='but'
                 disabled={currentPage === pageNumber.length}
                 onClick={()=>
                 setCurrentPage(currentPage === numPages?

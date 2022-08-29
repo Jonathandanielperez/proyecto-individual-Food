@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import Card from './Card';
 import Paginado from './Paginado';
 import Search from './Search';
+import '../estilos/home.css';
 
 
 export default function Home (){
@@ -64,39 +65,41 @@ export default function Home (){
 
     return(
         <div>
+            <nav className='nav'>
             <div>
-                <select onChange={(e)=> handleFilterCreated(e)}>
-                    <option value="">Creada/Existente</option>
-                    <option value="all">Todas</option>
-                    <option value="created">Receta agregada</option>
-                    <option value="api">Receta existente</option>
+                <select onChange={(e)=> handleFilterCreated(e)} className='select-css'>
+                    <option className='select-css option' value="">Creada/Existente</option>
+                    <option className='select-css option' value="all">Todas</option>
+                    <option className='select-css option' value="created">Receta agregada</option>
+                    <option className='select-css option' value="api">Receta existente</option>
                 </select>
             </div>
             <div>
-                <select onChange={(e)=>handleFilterByDiet(e)}>
-                <option value="">Dietas</option>
-                <option value="all">Todas</option>
+                <select className='select-css' onChange={(e)=>handleFilterByDiet(e)}>
+                <option className='select-css option' value="">Dietas</option>
+                <option className='select-css option' value="all">Todas</option>
                 {allDiets && allDiets.map((d)=>(
-                    <option key={d.id} value={d.name}>{d.name}</option>
+                    <option className='select-css option' key={d.id} value={d.name}>{d.name}</option>
                 ))}
                 </select>
             </div>
             <div>
-                <select onChange={e=>handleSortHealt(e)}>
-                <option value="">Healt score</option>
-                <option value="men">Menor score</option>
-                <option value="may">Mayor score</option>
+                <select className='select-css' onChange={e=>handleSortHealt(e)}>
+                <option className='select-css option' value="">Healt score</option>
+                <option className='select-css option' value="men">Menor score</option>
+                <option className='select-css option' value="may">Mayor score</option>
                 </select>
             </div>
             <div>
-                <select onChange={(e) => handleSortTitle(e)}>
-                <option value="">Orden alfabetico</option>
-                <option value="asc">A-Z</option>
-                <option value="des">Z-A</option>
+                <select className='select-css' onChange={(e) => handleSortTitle(e)}>
+                <option className='select-css option' value="">Orden alfabetico</option>
+                <option className='select-css option' value="asc">A-Z</option>
+                <option className='select-css option' value="des">Z-A</option>
                 </select>
             </div>
             <div>
                 <button
+                className='select-css'
                 onClick={e =>{handleClick(e)}}
                 >
                     <span>Recargar</span>
@@ -104,16 +107,26 @@ export default function Home (){
             </div>
             <div>
                 <Link to='/'>
-                <button>
+                <button className='select-css'>
                     <span>Salir</span>
                 </button>
                 </Link>
             </div>
+            <div>
+                <Link to='/hola'>
+                <button className='select-css'>
+                    <span>Acerca de mi</span>
+                </button>
+                </Link>
+            </div>
             <Link to='/recipes'>
-            <button>
+            <button className='select-css'>
                 <span>Crear receta</span>
             </button>
             </Link>
+
+            <Search/>
+            </nav>
             <div>
                 <Paginado
                 recipePerPage={recipePerPage}
@@ -123,8 +136,8 @@ export default function Home (){
                 setCurrentPage={setCurrentPage}
                 />
             </div>
-            <Search/>
-            <div>
+            
+            <div className='contenedor'>
                 {
                     currentRecipes.map(e=>{
                         return(
@@ -132,6 +145,15 @@ export default function Home (){
                         )
                     })
                 }
+            </div>
+            <div>
+                <Paginado
+                recipePerPage={recipePerPage}
+                allRecipes={allRecipes.length}
+                paginado={paginado}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                />
             </div>
         </div>
     )
