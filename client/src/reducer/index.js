@@ -85,7 +85,7 @@ function rootReducer (state = initialState, action){
         case 'GET_DETAIL':
             return{
                 ...state,
-                detail: action.payload
+                detalle: action.payload
             }
             //ruta crear
         case 'POST_DOG':

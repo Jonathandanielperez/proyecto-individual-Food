@@ -1,0 +1,54 @@
+.card {
+   
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    border:3px solid #fa9779;
+    border-radius: 20px;
+    margin: 20px;
+    width: 288px;
+    height: 400px;
+    background-color: black;
+    
+    color: white;
+    text-decoration: none;
+    box-shadow: none;
+
+  }
+
+  .hh{
+    text-decoration: none;
+    box-shadow: none;
+  }
+
+  .img{
+    width: 288px;
+    height: 10rem;
+    border-radius: 16px;
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+
+  .button2 {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: white;
+    border: 3px solid #fa9779;
+    color: black;
+    text-align: center;
+    font-size: 12px;
+    padding: 6px;
+    transition: all 0.5s;
+    cursor: pointer;
+  }
+
+  .button2:hover{
+    border: 3px solid #f4511e;
+  }
+  
+  .button2 span {
+    cursor: pointer;
+    display: block;
+    position: relative;
+    transition: 0.5s;
+    margin: auto;
+  }

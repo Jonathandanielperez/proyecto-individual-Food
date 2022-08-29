@@ -5,6 +5,7 @@ import LandingPage from './componentes/LandingPage';
 import Home from './componentes/Home';
 import Detalle from './componentes/Detalle';
 import Formulario from './componentes/Formulario';
+import Hola from './componentes/Hola';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <Switch>
         <Route exact path= '/' component= {LandingPage}/>
         <Route path='/home' component={Home}/>
-        <Route exact path= '/recipes' componenet= {Formulario}/>
-        <Route path= 'detalle/:id' componenet={Detalle}/>
+        <Route exact path= '/recipes' component= {Formulario}/>
+        <Route path= "/detail/:id" component={Detalle}/>
+        <Route path= '/hola' component ={Hola}/>
       </Switch>
     </div>
     </BrowserRouter>

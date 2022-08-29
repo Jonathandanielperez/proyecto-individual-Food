@@ -81,16 +81,18 @@ const getId =async (id)=>{
                 healthScore: db.healthScore,
                 instructions: db.instructions,
                 image: db.image,
-                creadoEnDb: true
+                creadoEnDb: true,
+                diet: db.diets.map(e=>e.name)
             }
         }
         const recetaA = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=a9c77b840a354e019cc2fe0d3602f556`)
         return{
             id: recetaA.data.id,
             title: recetaA.data.title,
-            summary: recetaA.data.summary,
+            summary: recetaA.data.summary.replace(/<[^>]*>?/gm,''),//gm busqueda global(global match)//^ multilinea
             healthScore: recetaA.data.healthScore,
-            instructions: recetaA.data.instructions,
+            //instructions: recetaA.data.instructions,
+            instructions: recetaA.data.analyzedInstructions[0].steps.map(e=>e.step).join(", "),
             image: recetaA.data.image,
             diet: recetaA.data.diets
         }
@@ -98,7 +100,7 @@ const getId =async (id)=>{
 }
 
 router.get('/recipes/:id', async(req,res)=>{
-    const id = req.params.id;
+    const {id} = req.params;
     try{
         if(id){
             let recetaId = await getId(id)

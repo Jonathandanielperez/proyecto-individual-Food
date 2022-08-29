@@ -2,6 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {getTitleRecipe} from '../actions';
+import '../estilos/search.css'
 
 export default function Search(){
     const dispatch= useDispatch()
@@ -18,8 +19,9 @@ export default function Search(){
     }
 
     return (
-        <div>
+        <div >
             <input
+            className='searchTerm'
             onChange={(e)=> handleInputChange(e)}
             value={name}
             type="text"
@@ -27,6 +29,7 @@ export default function Search(){
             />
 
             <button
+                className='searchButton'
                 onClick={(e)=>
                 handleSubmit(e)}
                 type="submit"

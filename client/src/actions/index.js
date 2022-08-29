@@ -62,13 +62,13 @@ export function orderByHealt(payload){
 export function getDetail(id){
     return async function (dispatch){
         try{
-            var json= await axios.get(`http://localhost:3001/recipes/${id}`);
+            var json= await axios.get("http://localhost:3001/recipes/"+id);
             return dispatch ({
                 type: 'GET_DETAIL',
                 payload: json.data
             })
         }catch (error){
-            console.log('El error es: ', error)
+            console.log('El error del id es: ', error)
         }
     }
 }
