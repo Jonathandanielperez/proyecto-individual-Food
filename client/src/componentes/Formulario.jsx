@@ -6,35 +6,6 @@ import '../estilos/formulario.css';
 
 function validar(input){
     let errors = {};
-    //verifica que no este vacio
-    //verifica solo texto
-    //verifica que sea solo numero
-    /*if(!input.title || !/^[A-Z]+[A-Za-z0-9\s]+$/g.test(input.title)){
-        errors.title = "Ingrese el titulo";
-    }else{
-        errors.title= "Correcto";
-    }
-
-    if(!input.summary || !/^[A-Z]+[A-Za-z0-9\s]+$/g.test(input.summary)){//
-        errors.summary = "Ingrese un resumen";
-    }else{
-        errors.summary = "Correcto";
-    }
-
-    if(!input.healthScore || !/^[1-9]\d*(\.\d+)?$/.test(input.healthScore)){
-        errors.healthScore = "Ingrese numerno de nivel saludable";
-    } else{
-        errors.healthScore = "Correcto";
-    }
-
-    if(!input.instructions || !/^[A-Z]+[A-Za-z0-9\s]+$/g.test(input.instructions)){
-        errors.instructions = "Ingrese instrucciones";
-    }
-    else{
-        errors.instructions = "Correcto"
-
-            /^[A-Z][a-z][^$()!¡@#/=¿{}?%&|<>#]*$/
-    }*/
 
     if(!input.title || input.title.value===null || input.title.value===""){
         errors.title = "Ingrese el titulo";
@@ -42,8 +13,11 @@ function validar(input){
     /*else if(/^\s*$/.test(input.title)){
         errors.title = "Titulo: No debe ser vacio";
     }*/
-    else if(/^[A-Z][a-z][^$()!¡@#/=¿{}?%&|<>#]*$/.test(input.title)){// !/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/        !/^[a-zA-Z]+$/
+    else if(/^[A-Z][a-z][^$()!¡@#/=¿{}?%&|<>#]*$/.test(input.title)){
         errors.title = "Titulo: Solo se admite texto"
+    }
+    if(!input.origen || input.origen.length < 3){
+        errors.origen = "Origen invalido"
     }
     
     if(!input.summary || input.summary.value===null || input.summary.value===""){
@@ -52,9 +26,9 @@ function validar(input){
     /*else if(/^\s*$/.test(input.summary)){
         errors.summary = "Resumen: No debe ser vacio";
     }*/
-    else if(/^[A-Z][a-z][^$()!¡@#/=¿{}?%&|<>#]*$/.test(input.summary)){// !/^[a-zA-Z]+$/   !/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/
+    /*else if(/^[A-Z][a-z][^$()!¡@#/=¿{}?%&|<>#]*$/.test(input.summary)){
         errors.summary = "Resumen: Solo se admite texto"
-    }
+    }*/
 
     if(!input.healthScore || input.healthScore.value===null || input.healthScore.value===""){
         errors.healthScore = "Score: Ingrese numerno de nivel saludable"
@@ -62,21 +36,19 @@ function validar(input){
     else if(/^\s*$/.test(input.healthScore)){
         errors.healthScore = "Score: No debe ser vacio"
     }
-    else if(!/(?=.*[0-9])/.test(input.healthScore)){// !/^[0-9]+$/
+    else if(/(?=.*[0-9])/.test(input.healthScore)){
         errors.healthScore = "Score: Solo se admite numero"
     }
 
     if(!input.instructions || input.instructions.value===null || input.instructions.value===""){
         errors.instructions = "Ingrese instrucciones";
     }
-    /*else if(/^\s*$/.test(input.instructions)){
-        errors.instructions = "Instrucciones: No debe ser vacio";
-    }*/
-    else if(/^[A-Z][a-z][^$()!¡@#/=¿{}?%&|<>#]*$/.test(input.instructions)){// !/^[a-zA-Z]+$/   !/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/
+   
+    /*else if(/^[A-Z][a-z][^$()!¡@#/=¿{}?%&|<>#]*$/.test(input.instructions)){
         errors.instructions = "Instrucciones: Solo se admite texto"
-    }
+    }*/
 
-    if(input.diet.length <= 2){
+    if(input.diet.length <= 3){
        errors.diet = "No puede tener mas de 3 dietas"
     }
 
@@ -91,6 +63,7 @@ export default function Crear(){
     const [errors, setErrors]= useState({});
     const [input, setInput]= useState({
         title: "",
+        origen:"",
         summary: "",
         healthScore: "",
         instructions: "",
@@ -102,6 +75,7 @@ export default function Crear(){
         e.preventDefault();
         if(
             input.title !== "" &&
+            input.origen !== "" &&
             input.summary !== "" &&
             input.healthScore !== "" &&
             input.instructions !== "" &&
@@ -111,6 +85,7 @@ export default function Crear(){
             alert("Receta creada!");
             setInput({
                 title: "",
+                origen: "",
                 summary: "",
                 healthScore: "",
                 instructions: "",
@@ -234,6 +209,16 @@ export default function Crear(){
             className="inputTerm"
         />
     </div>
+    <div>
+        <label>Origen: </label>
+        <input
+            value={input.origen}
+            type="text"
+            name="origen"
+            onChange={(e)=>handleChange(e)}
+            className="inputTerm"
+        />
+    </div>
     <div className='liss'>
         <select className="select-css2" onChange={(e)=>handleSelect(e)}>
             <option value="">Elige dietas</option>
@@ -264,6 +249,7 @@ export default function Crear(){
  {errors.summary && (<p className='danger'>{errors.summary}</p>)}
  {errors.healthScore && (<p className='danger'>{errors.healthScore}</p>)}
  {errors.instructions && (<p className='danger'>{errors.instructions}</p>)}
+ {errors.origen && (<p className='danger'>{errors.origen}</p>)}
  </div>
 </div>
 )}

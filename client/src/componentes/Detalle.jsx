@@ -35,12 +35,8 @@ export default function Detalle(props){
                             <li><h4>Dietas: </h4><p className='p'>{
                              !myReceta.creadoEnDb ?
                              myReceta.diet :
-                             myReceta.diet.toString().split(', ')//.toString().split(", ")
+                             myReceta.diet.toString().split(', ')
                             }</p></li>
-                            {/*
-                            <li><h3>Paso a paso</h3>{myReceta.instructions}</li>
-                            <li><h3>Dietas: </h3>{myReceta.diet}</li>
-                           */}
                         </ul>
                     </div>
                 </div> :

@@ -3,7 +3,7 @@ import '../estilos/paginado.css';
 
 export default function Paginado ({recipePerPage, allRecipes, paginado, currentPage, setCurrentPage}){
     const pageNumber= []
-    let numPages= Math.ceil(allRecipes/recipePerPage)
+    let numPages= Math.ceil(allRecipes/recipePerPage) //math.ceil devuelve un entero mayor o igual mas proximo
     for(let i=1; i<= numPages; i++){
         pageNumber.push(i)
     }

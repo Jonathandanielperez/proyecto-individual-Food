@@ -29,7 +29,7 @@ function rootReducer (state = initialState, action){
                     ...state,
                     recipes: dietsFilter
                 }
-            //filtro pór db o api
+            //filtro por db o api
         case 'FILTER_CREATED':
                 const allRecipe3= state.allRecipes
                 const createdFilter= action.payload === 'created' ?
@@ -43,7 +43,7 @@ function rootReducer (state = initialState, action){
             //filtro por orden alfabetico
         case 'ORDER_BY_TITLE':
             let sortedArr = action.payload === 'asc' ?
-            state.recipes.sort(function (a,b){
+            state.recipes.sort(function (a,b){ //el metodo sort ordena elementos de un arreglo
                 if(a.title > b.title){
                     return 1;
                 }

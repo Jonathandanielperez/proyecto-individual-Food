@@ -141,7 +141,13 @@ export default function Home (){
                 {
                     currentRecipes.map(e=>{
                         return(
-                            <Card title={e.title} image={e.image} diet={!e.creadoEnDb ? e.diet : e.diets.map(e=>e.name).toString().split(", ")} healthScore={e.healthScore} id={e.id} key={e.id}/>
+                            <Card title={e.title} 
+                             origen={e.origen}
+                             image={e.image}
+                             diet={!e.creadoEnDb ? e.diet : e.diets.map(e=>e.name).toString().split(", ")}
+                             healthScore={e.healthScore} 
+                             id={e.id} 
+                             key={e.id}/>
                         )
                     })
                 }

@@ -14,9 +14,10 @@ const router = Router();
 //traigo las recetas
 const getApiInfo = async ()=>{
     const firstReq = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=a9c77b840a354e019cc2fe0d3602f556&number=100&addRecipeInformation=true`);
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=c7455ffa96db4588bd6ae873da636768&number=100&addRecipeInformation=true`);
     const info = firstReq.data.results.map(e=>{
         return{
+            origen: "Extranjero",
             id: e.id,
             title: e.title,
             //summary: e.summary,
@@ -85,14 +86,14 @@ const getId =async (id)=>{
                 diet: db.diets.map(e=>e.name)
             }
         }
-        const recetaA = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=a9c77b840a354e019cc2fe0d3602f556`)
+        const recetaA = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=c7455ffa96db4588bd6ae873da636768`)
         return{
             id: recetaA.data.id,
             title: recetaA.data.title,
-            summary: recetaA.data.summary.replace(/<[^>]*>?/gm,''),//gm busqueda global(global match)//^ multilinea
+            summary: recetaA.data.summary.replace(/<[^>]*>?/gm,''),//gm busqueda global(global match)//^ multilinea // replace: reemplaza
             healthScore: recetaA.data.healthScore,
             //instructions: recetaA.data.instructions,
-            instructions: recetaA.data.analyzedInstructions[0].steps.map(e=>e.step).join(", "),
+            instructions: recetaA.data.analyzedInstructions[0].steps.map(e=>e.step).join(", "), //join une todos los elemetos y les separa con una ", "
             image: recetaA.data.image,
             diet: recetaA.data.diets
         }
@@ -114,7 +115,7 @@ router.get('/recipes/:id', async(req,res)=>{
 //get x dieta
 
 router.get('/diets', async (req,res)=>{
-    const dietApi= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=a9c77b840a354e019cc2fe0d3602f556&number=100&addRecipeInformation=true`)
+    const dietApi= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=c7455ffa96db4588bd6ae873da636768&number=100&addRecipeInformation=true`)
     try{
        const diet= dietApi.data.results.map(e=>e.diets);
        console.log("las diet de api aca: ", diet)
@@ -140,6 +141,7 @@ router.post('/recipes', async (req,res)=>{
         healthScore,
         instructions,
         image,
+        origen,
         diet
     }= req.body;
     try{
@@ -148,7 +150,8 @@ router.post('/recipes', async (req,res)=>{
         summary,
         healthScore,
         instructions,
-        image
+        image,
+        origen
         })
         let dietDb = await Diet.findAll({ where: {name: diet}})
         recipeCreated.addDiet(dietDb)
@@ -159,5 +162,47 @@ router.post('/recipes', async (req,res)=>{
         console.log("el error del post fue: ", error)
     }
 })
+
+////ruta delete
+/*
+router.delete("/delete/:id", (req,res)=>{
+    try{
+        const {id}= req.params;
+        Recipe.destroy({where: {id: id}})
+        res.send("Receta eliminada")
+    }catch (error){
+        console.log("el error de la ruta delete es: ", error)
+    }
+})
+*/
+
+////ruta put
+/*
+router.put('/edit/:id', async (req,res)=>{
+    try{
+        const{id}=req.params;
+        const {
+            title,
+            summary,
+            healthScore,
+            instructions,
+            image
+        } = req.body;
+
+        const modificarRec= await Recipe.update({
+            title,
+            summary,
+            healthScore,
+            instructions,
+            image
+        },
+        {where: {id}}
+        );
+        res.send(modificarDog);
+    }catch (error){
+        console.log("El error del put es: ", error)
+    }
+})
+*/
 
 module.exports = router;
