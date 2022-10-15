@@ -6,7 +6,7 @@
     padding: 200px;
     text-decoration: none;
     box-shadow: none;
-    height: 253px;
+    height:max-content;
 }
 .h1a{
   font-size: 16;
@@ -60,6 +60,7 @@
     display: none;
     background-color: black;
    }
+
 
    .select-css2 option {
     font-weight:normal;

@@ -19,7 +19,7 @@ export default function Search(){
     }
 
     return (
-        <div >
+        <div className=''>
             <input
             className='searchTerm'
             onChange={(e)=> handleInputChange(e)}
@@ -36,6 +36,7 @@ export default function Search(){
             >
             Buscar
             </button>
+            
         </div>
     )
 }

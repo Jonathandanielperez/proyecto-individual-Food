@@ -1,22 +1,22 @@
 body{
     background: linear-gradient(to bottom, black , rgb(90, 85, 85), rgb(151, 148, 148)  );
     background-repeat: no-repeat;
-    height: auto;
+    height: 100%;
     width: 100%;
 
 }
 
 .div{
-    background-image: url(C:\Users\User\Desktop\proyecto-individual-Food\client\src\img\food-366875_960_720.jpg);
+    background-image: url(C:\Users\User\Desktop\proyecto-individual-Food\client\src\img\ingredientes-italianos-apetitosos-frescos-sabrosos-comida-fondo-oscuro-listo-cocinar-inicio-italiano-comida-saludable-concepto-cocina-viraje_1220-1820.webp);
     display: inline-block;
     text-align: center;
     align-items: center; 
     padding: 200px;
     text-decoration: none;
     box-shadow: none;
-    height: 253px;
+    height: 300px;
     width: 966px;
-    
+    margin: 0%;
 }
 
 .button1 {
@@ -26,7 +26,7 @@ body{
     border: none;
     color: #141212;
     text-align: center;
-    font-size: 25px;
+    font-size: 25px !important;
     padding: 8px;
     transition: all 0.5s;
     cursor: pointer;

@@ -22,6 +22,9 @@ export default function Detalle(props){
     return(
 
         <div className='div2'>
+            <Link to= '/home'>
+                <button className='button3'><span>Volver</span></button>
+            </Link>
             {
             myReceta ?
                 <div key={myReceta.id} >
@@ -30,7 +33,7 @@ export default function Detalle(props){
                     <div className='div22'>
                         <ul className='ul'>
                             <li><h4>Resumen del plato: </h4><p className='p'>{myReceta.summary}</p></li>
-                            <li><h4>Nivel de comida saludable: </h4><p className='p'>{myReceta.healthScore}</p></li>
+                            <li><h4>Puntaje de salud: </h4><p className='p'>{myReceta.healthScore}</p></li>
                             <li><h4>Paso a paso</h4><p className='p'>{myReceta.instructions}</p></li>
                             <li><h4>Dietas: </h4><p className='p'>{
                              !myReceta.creadoEnDb ?

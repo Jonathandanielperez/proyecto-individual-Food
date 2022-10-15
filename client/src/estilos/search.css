@@ -2,20 +2,21 @@
     padding: 20px;
     width: auto;
     position: relative;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
   }
   
   .searchTerm {
-    font-size: 13px;
+    font-size: 10px;
     background-color: #0f0f0f ;
     opacity: 0.80;
     width: auto;
-    border: 5px solid #fa9779;
+    border: 1px solid #fa9779;
     border-right: none;
-    height: auto;
-    
+    height: 15px;
     outline: none;
     color: #fff;
     
@@ -27,16 +28,18 @@
   
   .searchButton {
     width: auto;
-    height: auto;
-    border: 5px solid #fa9779;
+    height: 19px;
+    border: 1px solid #fa9779;
     background: #0f0f0f;
     text-align: center;
     color: #fff;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 10px;
   }
 
   .searchButton:hover{
-    border: 5px solid #f4511e;
+    border: 1px solid #f4511e;
+    color: #0f0f0f;
+    background-color: #fff;
   }

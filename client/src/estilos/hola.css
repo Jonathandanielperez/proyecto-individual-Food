@@ -1,0 +1,18 @@
+.imgHola{
+    display:flex;
+    flex-direction: column;
+    max-width: 150px;
+    width: 70%;
+    border-radius: 70%;
+
+}
+.ulH{
+    list-style: none;
+    display: flex;
+    flex-direction:column;
+    
+    
+   }
+   .hs{
+    color:white
+   }

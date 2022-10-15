@@ -18,7 +18,7 @@ export default function Paginado ({recipePerPage, allRecipes, paginado, currentP
                     currentPage:
                     currentPage - 1)}
                 >
-                Prev.
+                {"<<"}
                 </button>
                 <li>
                     {pageNumber && pageNumber.map((number)=>(
@@ -39,7 +39,7 @@ export default function Paginado ({recipePerPage, allRecipes, paginado, currentP
                     currentPage:
                     currentPage + 1)}
                 >
-                Sig.
+                {">>"}
                 </button>
             </ul>
         </nav>

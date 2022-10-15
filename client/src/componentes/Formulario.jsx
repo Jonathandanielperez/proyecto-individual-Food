@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { postRecipe, getDiets } from '../actions';
 import '../estilos/formulario.css';
 
+
 function validar(input){
     let errors = {};
 
@@ -171,7 +172,7 @@ export default function Crear(){
         {/*errors.summary && (<p>{errors.summary}</p>)*/}
     </div>
     <div>
-        <label className='lavel'>Nivel de comida saludable: </label>
+        <label className='lavel'>Puntaje de salud: </label>
         <input
             value={input.healthScore}
             type="number"
@@ -237,6 +238,7 @@ export default function Crear(){
                         onClick={()=>handleDelete(e)}
                     >
                         {e}
+                        
                     </button>
                 ))}
             </li>
@@ -251,5 +253,6 @@ export default function Crear(){
  {errors.instructions && (<p className='danger'>{errors.instructions}</p>)}
  {errors.origen && (<p className='danger'>{errors.origen}</p>)}
  </div>
+
 </div>
 )}

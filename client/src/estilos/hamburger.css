@@ -1,0 +1,64 @@
+.almenu{
+    background-color: #0f0f0f;
+    color: white;
+    height: 15px;
+    width: 75px;
+
+    border-right: solid 1px #fa9779;
+    border-bottom: solid 1px #fa9779;
+    border-top: none;
+    border-left: none;
+    padding: none;
+    cursor: pointer;
+
+    padding-left: 1%;
+    text-align: left;
+}
+
+.almenu:hover{
+  border-color: #f4511e;
+}
+.ulHam{
+  display: none;
+    margin-top:0;
+    padding: 0;
+    width: 0px;
+}
+
+input:checked  ~ ul{
+  display:block;
+  border: none
+}
+
+.in {
+  display: none;
+}
+
+.labelHam {
+  padding-top: 0.5%;
+  padding-left: 5%;
+  color: #fa9779;
+  font-size: 10px;
+  box-sizing: border-box;
+  display: inline-block;
+  border: none;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-weight: bold;
+  text-align: center;
+  user-select: none;
+
+}
+.labelHam:hover{
+    color: #f4511e;
+}
+
+.span{
+  font-size: 10px;
+  padding-left: 1%;
+  text-align: left;
+}
+
+  

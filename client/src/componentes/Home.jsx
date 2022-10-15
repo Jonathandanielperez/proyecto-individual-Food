@@ -7,6 +7,7 @@ import Card from './Card';
 import Paginado from './Paginado';
 import Search from './Search';
 import '../estilos/home.css';
+import { Hamburger } from './Hamburger';
 
 
 export default function Home (){
@@ -64,69 +65,58 @@ export default function Home (){
 
 
     return(
-        <div>
+        <div className='divHo'>
             <nav className='nav'>
-            <div>
-                <select onChange={(e)=> handleFilterCreated(e)} className='select-css'>
+                <Hamburger/>
+               <div className='alLado'>
+                <select onChange={(e)=> handleFilterCreated(e)} className='select-css '>
                     <option className='select-css option' value="">Creada/Existente</option>
                     <option className='select-css option' value="all">Todas</option>
                     <option className='select-css option' value="created">Receta agregada</option>
                     <option className='select-css option' value="api">Receta existente</option>
                 </select>
             </div>
-            <div>
-                <select className='select-css' onChange={(e)=>handleFilterByDiet(e)}>
+            <div className='alLado'>
+                <button
+                className='select-css '
+                onClick={e =>{handleClick(e)}}
+                >
+                    <span>Recargar</span>
+                </button>
+            </div>  
+                        
+                <div className='alLado'>
+                <select className='select-css ' onChange={(e)=>handleFilterByDiet(e)}>
                 <option className='select-css option' value="">Dietas</option>
                 <option className='select-css option' value="all">Todas</option>
                 {allDiets && allDiets.map((d)=>(
                     <option className='select-css option' key={d.id} value={d.name}>{d.name}</option>
                 ))}
                 </select>
-            </div>
-            <div>
-                <select className='select-css' onChange={e=>handleSortHealt(e)}>
-                <option className='select-css option' value="">Healt score</option>
-                <option className='select-css option' value="men">Menor score</option>
-                <option className='select-css option' value="may">Mayor score</option>
+            </div>        
+                        
+                        
+            <div className='alLado'>
+                <select className='select-css ' onChange={e=>handleSortHealt(e)}>
+                <option className='select-css option' value="">Puntaje de salud</option>
+                <option className='select-css option' value="men">Menor puntaje</option>
+                <option className='select-css option' value="may">Mayor puntaje</option>
                 </select>
-            </div>
-            <div>
-                <select className='select-css' onChange={(e) => handleSortTitle(e)}>
+            </div>  
+                        
+            <div className='alLado'>
+                <select className='select-css ' onChange={(e) => handleSortTitle(e)}>
                 <option className='select-css option' value="">Orden alfabetico</option>
                 <option className='select-css option' value="asc">A-Z</option>
                 <option className='select-css option' value="des">Z-A</option>
                 </select>
-            </div>
-            <div>
-                <button
-                className='select-css'
-                onClick={e =>{handleClick(e)}}
-                >
-                    <span>Recargar</span>
-                </button>
-            </div>
-            <div>
-                <Link to='/'>
-                <button className='select-css'>
-                    <span>Salir</span>
-                </button>
-                </Link>
-            </div>
-            <div>
-                <Link to='/hola'>
-                <button className='select-css'>
-                    <span>Acerca de mi</span>
-                </button>
-                </Link>
-            </div>
-            <Link to='/recipes'>
-            <button className='select-css'>
-                <span>Crear receta</span>
-            </button>
-            </Link>
-
-            <Search/>
+            </div>  
+            
+               
+            
+             
             </nav>
+                 <Search />    
             <div>
                 <Paginado
                 recipePerPage={recipePerPage}
