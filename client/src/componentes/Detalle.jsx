@@ -22,7 +22,7 @@ export default function Detalle(props){
     return(
 
         <div className='div2'>
-            <Link to= '/home'>
+            <Link to= '/'>
                 <button className='button3'><span>Volver</span></button>
             </Link>
             {
@@ -45,7 +45,7 @@ export default function Detalle(props){
                 </div> :
                 <p>Cargando...</p>
             }
-            <Link to= '/home'>
+            <Link to= '/'>
                 <button className='button3'><span>Volver</span></button>
             </Link>
         </div>

@@ -43,7 +43,7 @@ export default function Hola(){
     <li><img src={psql}/></li>
  </ul>
 </div>
-<Link to='/home'>
+<Link to='/'>
 <button className='button4'>
     Volver
 </button>

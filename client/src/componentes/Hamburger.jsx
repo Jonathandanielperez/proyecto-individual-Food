@@ -21,15 +21,7 @@ export const Hamburger = () =>{
         <span className="span">Acerca de mi</span>
     </button>
     </Link>
-</div>        
-           
-    <div>
-    <Link to='/'>
-    <button className='almenu'>
-        <span className="span">Salir</span>
-    </button>
-    </Link>
-</div>       
+</div>              
             
         </ul>
     </div>

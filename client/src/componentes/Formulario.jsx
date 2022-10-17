@@ -140,7 +140,7 @@ export default function Crear(){
 
     return(
 <div className='div3'>
- <Link to='/home'>
+ <Link to='/'>
  <button className='button4'>Volver</button>
  </Link>
  <h1 className='h1a'>Crear una receta</h1>
